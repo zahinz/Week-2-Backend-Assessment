@@ -61,9 +61,7 @@
             <a href="http://localhost:8888/backend-day-9/quiz/sign-up.php">Sign up</a>
         </form>
         <section>
-            <?php
-            // $name = $_GET[email];
-            ?>
+
         </section>
     </div>
 </body>

@@ -50,27 +50,69 @@
     </style>
 
     <!-- php file here -->
-    <?php include 'db-myql.php' ?>
+    <?php include 'db-mysql.php' ?>
 </head>
 <body>
     <div>
         <p>Clock in</p>
 
-        <!-- PHP code -->
+        <!-- PHP CODE -->
         <?php
         // $name and role retrieve from database based on email login 
-        $name = $_POST[email];
-        $role;
+        $email = $_POST[email];
 
         // sql command here
-        
-        // UI display here
-        echo 'Hello '.$name.'<br>';
-        echo 'Your role - '.$role;
+        $sql_get_row = 
+        "SELECT *
+        FROM users
+        WHERE email = '$email'";
+
+        // get the result
+        $result_row_from_table = mysqli_query($conn, $sql_get_row);
+
+        // fetch the result
+        if ($row_from_table = mysqli_fetch_assoc($result_row_from_table)) {
+            // fetch the name
+            $name = $row_from_table['name'];
+            // fetch the roleId
+            $roleId = $row_from_table['roleId'];
+            
+            // text appeare depeding in roleId
+            if ($roleId == 1) {
+                $role = 'Admin';
+            } 
+            else if ($roleId == 2) {
+                $role = 'Employee';
+            }
+
+            // UI display
+            // name & role
+            echo 'Hello - '.$name.'<br>';
+            echo 'Your role - '.$role;
+            
+            // html form
+            echo '
+            <form action="confirm.php" method="post">
+            <br><br>
+            <label for="clock-in">I am in the office</label>
+            <input type="radio" name="clockIn" id="clock-in">
+            <br><br>
+            <input type="submit" value="Clock in">
+            </form>
+            ';
+        }
+
+        else {
+            echo 'No record in database. <br><br> <a href="http://localhost:8888/backend-day-9/quiz/sign-up.php">Sign up</a>';
+        }
         ?>
 
+        
+        <!-- END OF PHP CODE -->
+
+        
+
         <section>
-            <!-- another php here -->
         </section>
     </div>
 </body>

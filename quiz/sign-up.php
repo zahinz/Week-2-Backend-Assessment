@@ -54,10 +54,10 @@
         <p>Sign up</p>
         <form action="sign-up-status.php" method="post">
             <label for="email">Email</label>
-            <input type="email" name="email" id="">
+            <input type="email" name="email" id="" required>
             <br><br>
             <label for="name">Name</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" required>
             <br><br>
             <label for="role">Role</label>
             <select name="role" id="role">
