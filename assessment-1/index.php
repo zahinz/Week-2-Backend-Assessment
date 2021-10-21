@@ -66,6 +66,7 @@
             <input type="number" name="numUser3" id="user3">
             <br><br>
             <input type="submit" value="Analyse">
+            <a href="http://localhost:8888/backend-day-9/assessment-1">reset</a>
         </form>
         <section>
           <?php
@@ -100,13 +101,11 @@
             }
 
             function largest3($arr) {
-                $largest = [];
-                echo 'This are the number below and equal 5 <br>';
-                for ($i=0; $i < count($arr); $i++) { 
-                    if ($arr[$i] <= 5) {
-                        echo $arr[$i].' ';
-                    }
-                }
+                echo 'These are the 3 largest integers <br>';
+                sort($arr);
+                array_shift($arr);
+                array_shift($arr);
+                echo implode(' ', $arr);
                 echo '<br><br>';
             }
 
@@ -114,6 +113,7 @@
 
             above5($numUser1);
             below5($numUser2);
+            largest3($numUser3);
 
           ?>
         </section>
