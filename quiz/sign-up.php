@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance</title>
+    <title>Sign up</title>
+
+    <!-- css file here -->
     <style>
         html, body {
             height: auto; 
@@ -49,22 +51,22 @@
 </head>
 <body>
     <div>
-        <p>Login to your account</p>
-        <form action="clock-in.php" method="post">
+        <p>Sign up</p>
+        <form action="sign-up-status.php" method="post">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="">
             <br><br>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
             <br><br>
-            <input type="submit" value="Sign in">
-            <a href="http://localhost:8888/backend-day-9/quiz/sign-up.php">Sign up</a>
+            <label for="role">Role</label>
+            <select name="role" id="role">
+                <option value="employee">Employee</option>
+                <option value="admin">Admin</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Sign up">
         </form>
-        <section>
-            <?php
-            // $name = $_GET[email];
-            ?>
-        </section>
     </div>
 </body>
 </html>
