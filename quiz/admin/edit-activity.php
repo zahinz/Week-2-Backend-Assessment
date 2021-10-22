@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attendance</title>
+    <title>Test</title>
+
+    <!-- css file here -->
     <style>
         html, body {
             height: auto; 
@@ -46,22 +48,17 @@
             line-height: 1.5;
         }
     </style>
+
+    <!-- php file here -->
+    <?php include '../db-mysql.php' ?>
 </head>
 <body>
     <div>
-        <p>Login to your account</p>
-        <form action="clock-in.php" method="post">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" required>
-            <br><br>
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" required>
-            <br><br>
-            <input type="submit" value="Sign in">
-            <a href="http://localhost:8888/backend-day-9/quiz/sign-up.php">Sign up</a>
-        </form>
+        <p>Edit activity</p>
         <section>
-
+          <?php
+            
+          ?>
         </section>
     </div>
 </body>

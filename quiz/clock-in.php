@@ -54,12 +54,11 @@
 </head>
 <body>
     <div>
-        <p>Clock in</p>
-
         <!-- PHP CODE -->
         <?php
         // $name and role retrieve from database based on email login 
         $email = $_POST[email];
+        $passwordUser = $_POST[password];
 
         // sql command here
         $sql_get_row = 
@@ -70,13 +69,28 @@
         // get the result
         $result_row_from_table = mysqli_query($conn, $sql_get_row);
 
-        // fetch the result
+        // fetch the password hash
         if ($row_from_table = mysqli_fetch_assoc($result_row_from_table)) {
+            // fetch the password hash
+            $passwordDatabase = $row_from_table['password'];
             // fetch the name
             $name = $row_from_table['name'];
             // fetch the roleId
             $roleId = $row_from_table['roleId'];
-            
+        };
+
+        // declare function for verify hashed password
+        function verifyPassword($password, $hashDatabase) {
+            if(password_verify($password, $hashDatabase)) {
+                return TRUE;
+            }
+            else {
+                return FALSE;
+            }
+        };
+
+        // call verify password function and password granted
+        if (verifyPassword($passwordUser, $passwordDatabase)) {  
             // text appeare depeding in roleId
             if ($roleId == 1) {
                 $role = 'Admin';
@@ -87,8 +101,14 @@
 
             // UI display
             // name & role
+            echo '<p>Clock in</p>';
             echo 'Hello - '.$name.'<br>';
             echo 'Your role - '.$role;
+            // open admin dashboard
+            if ($roleId == 1) {
+                echo '<p>.</p>
+                <a href="http://localhost:8888/backend-day-9/quiz/admin">Admin portal</a>';
+            }
             
             // html form
             echo '
@@ -97,20 +117,22 @@
             <input type="hidden" name="email" id="email" value="'.$email.'">
             <br><br>
             <label for="clock-in">I am in the office</label>
-            <input type="radio" name="clockIn" id="clock-in">
+            <input type="checkbox" name="clockIn" id="clock-in">
             <br><br>
             <input type="submit" value="Clock in">
             <a href="http://localhost:8888/backend-day-9/quiz/">Sign out</a>
             </form>
             ';
         }
-
+        
         else {
-            echo 'No record in database. <br><br> <a href="http://localhost:8888/backend-day-9/quiz/sign-up.php">Sign up</a>';
+            echo '<p>Error</p>';
+            echo 'Wrong password. <br><br> <a href="http://localhost:8888/backend-day-9/quiz/sign-up.php">Sign up</a>';
         }
+
+
         ?>
 
-        
         <!-- END OF PHP CODE -->
 
         

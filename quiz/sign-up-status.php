@@ -54,13 +54,29 @@
                 // database recall
                 include 'db-mysql.php';
 
-                $email = $_POST[email];
+                // get the global variable
                 $name = $_POST[name];
+                $email = $_POST[email];
+                $passwordUser = $_POST[password];
                 $_POST[role] === 'admin' ? $roleId = 1 : $roleId = 2;
-                
+
+                // declare hash the password function
+                function hashPassword($password) {
+                    if (!empty($password)) {
+                        return password_hash($password, $hash);
+                    }
+                    else {
+                        return false;
+                    }
+                }
+
+                // call hash the password function
+                $passwordDatabase = hashPassword($passwordUser);
+
+                // insert user into database
                 $sql_sign_up = 
-                "INSERT INTO users (name, email, roleId)
-                VALUES ('$name', '$email', '$roleId')";
+                "INSERT INTO users (name, email, password, roleId)
+                VALUES ('$name', '$email', '$passwordDatabase', '$roleId')";
 
                 if ($conn->query($sql_sign_up) === TRUE) {
                     echo "Welcome to your new work place <br> <a href='http://localhost:8888/backend-day-9/quiz/'>Sign in now</a>";
