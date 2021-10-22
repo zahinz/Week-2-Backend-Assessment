@@ -94,10 +94,13 @@
             echo '
             <form action="confirm.php" method="post">
             <br><br>
+            <input type="hidden" name="email" id="email" value="'.$email.'">
+            <br><br>
             <label for="clock-in">I am in the office</label>
             <input type="radio" name="clockIn" id="clock-in">
             <br><br>
             <input type="submit" value="Clock in">
+            <a href="http://localhost:8888/backend-day-9/quiz/">Sign out</a>
             </form>
             ';
         }
@@ -113,6 +116,7 @@
         
 
         <section>
+
         </section>
     </div>
 </body>
