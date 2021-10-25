@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>Confirm clock in</title>
 
     <!-- css file here -->
     <style>
@@ -96,7 +96,7 @@
                 if ($conn->query($sql_push_history_log) === TRUE) {
                     echo "<br><br>New record created successfully";
                     } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
+                    echo "Error: " . $sql_push_history_log . "<br>" . $conn->error;
                     }
                 }
                 echo '<form><br><br><input type="button" value="Back" onClick="javascript:history.go(-1)"><br></form>';

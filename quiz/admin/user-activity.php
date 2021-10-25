@@ -77,7 +77,7 @@
                         $logId = $row["logId"];
                         echo "Log id: " . $row["logId"]. " - Timestamp: " . $row["timeLogin"].'
                         <form class="edit-form" action="edit-activity.php" method="post">
-                            <input type="hidden" name="LogId" value="."$logId".">
+                            <input type="hidden" name="logId" value="'.$logId.'">
                             <input type="submit" value="Edit">
                         </form><br><br>';
                     }

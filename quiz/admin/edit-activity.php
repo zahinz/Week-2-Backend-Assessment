@@ -56,9 +56,46 @@
     <div>
         <p>Edit activity</p>
         <section>
-          <?php
-            
-          ?>
+            <?php
+                $logId = $_POST[logId];
+                
+                $sql_logId_display = 
+                "SELECT *
+                FROM history_logs
+                INNER JOIN users
+                ON history_logs.userId = users.userId
+                WHERE history_logs.logId = '$logId'";
+
+                $result_logId_display = mysqli_query($conn, $sql_logId_display);
+
+                // print_r($result_logId_display);
+
+                if (mysqli_num_rows($result_logId_display) > 0) {
+                    // output data of each row
+                    while($row = mysqli_fetch_assoc($result_logId_display)) {
+                        $name = $row["name"];
+                        $userId = $row["userId"];
+                        $currenttimestamp = $row["timeLogin"];
+                        
+                        echo '<form action="new-activity.php" method="post">
+                            <label for="logid">Log ID</label>
+                            <input type="text" name="logId" id="logid" value="'.$logId.'" readonly>
+                            <label for="employeename">Employee name</label>
+                            <input type="text" name="name" id="employeename" value="'.$name.'" readonly>
+                            <input type="hidden" name="userid" id="userid" value="'.$userId.'" readonly>
+                            <label for="currenttimestamp">Current</label>
+                            <input type="datetime" name="currenttimestamp" id="currenttimestamp" value="'.$currenttimestamp.'" readonly>
+                            <label for="newtimestamp">New</label>
+                            <input type="datetime" name="newtimestamp" id="newtimestamp" placeholder="YYYY-MM-DD HH:MM:SS">
+                            <br><br>
+                            <input type="submit" value="Confirm">
+                            <input type="button" value="Back" onClick="javascript:history.go(-1)">
+                        </form>';
+                    }
+                } else {
+                    echo "error";
+                }
+            ?>
         </section>
     </div>
 </body>
